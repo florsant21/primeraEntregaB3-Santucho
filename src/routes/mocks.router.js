@@ -10,7 +10,7 @@ router.get('/mockingpets', (req, res) => {
     const mockPets = [];
     for (let i = 0; i < 10; i++) {
         mockPets.push({
-            _id: `mockPetId${i}`,
+            _id: `mockPetId${i}`, 
             name: `Mocky Pet ${i}`,
             specie: i % 2 === 0 ? 'Dog' : 'Cat',
             birthDate: new Date(2020, i, 1),
@@ -23,7 +23,7 @@ router.get('/mockingpets', (req, res) => {
 
 router.get('/mockingusers', async (req, res) => {
     const numberOfUsers = 50;
-    const mockUsers = await generateMockUsers(numberOfUsers);
+    const mockUsers = await generateMockUsers(numberOfUsers); 
     res.send({ status: "success", payload: mockUsers });
 });
 
@@ -35,7 +35,7 @@ router.post('/generateData', async (req, res) => {
     }
 
     try {
-        const generatedUsers = await generateMockUsers(numUsers);
+        const generatedUsers = await generateMockUsers(numUsers, true); 
         const insertedUsers = [];
         for (const user of generatedUsers) {
             const result = await usersService.create(user);
@@ -50,7 +50,7 @@ router.post('/generateData', async (req, res) => {
                 birthDate: new Date(2021, i % 12, (i % 28) + 1),
                 image: 'generated-image.jpg'
             });
-            const result = await petsService.create(pet);
+            const result = await petsService.create(pet); 
             insertedPets.push(result);
         }
 
